@@ -9,15 +9,55 @@ main file, runs and tests removingLeadingSpaces function
 */
 
 #include <iostream>
-#include "funcs.h"
+#include <fstream>
+#include "unindent.h"
 
 int main()
 {
-
+  std::cout << "testing removeLeadingSpaces with a sentence" << std::endl;
   std::string x = "       int x = 1;  ";
   x = removeLeadingSpaces(x);
   std::cout << x  << std::endl;
 
+  std::cout << "\ntesting removeLeadingSpaces with bad-code file" << std::endl;
+  std::string line;
+  std::string output = ""; //delete later
+  std::ifstream in;
+
+  in.open("bad-code.cpp");
+
+  if(in.fail()) {
+    std::cerr << "File cannot be opened";
+    exit(1);
+  }
+
+  std::ofstream out;
+  out.open("removed-indentation.cpp");
+  while (getline(in, line))
+    {
+      //std::cout << line <<std::endl;
+      out << removeLeadingSpaces(line);
+      out << "\n";
+    }
+  in.close();
+  out.close();
+
+  //std::ifstream in;
+  in.open("removed-indentation.cpp");
+  if (in.fail())
+    {
+      std::cerr << "File cannot be opened";
+      exit(1);
+    }
+  
+  while (getline(in, line))
+  {
+    //std::cout << "running fixed indentation" << std::endl;
+    std::cout << line << std::endl;
+  }
+  in.close();
+  
+  //std::cout << output;
 
   return 0;
 }
