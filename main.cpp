@@ -11,6 +11,7 @@ main file, runs and tests removingLeadingSpaces function
 #include <iostream>
 #include <fstream>
 #include "unindent.h"
+#include "indent.h"
 
 int main()
 {
@@ -38,14 +39,12 @@ int main()
   out.open("removed-indentation.cpp");
   while (getline(in, line))
     {
-      //std::cout << line <<std::endl;
       out << removeLeadingSpaces(line);
       out << "\n";
     }
   in.close();
   out.close();
 
-  //std::ifstream in;
   in.open("removed-indentation.cpp");
   if (in.fail())
     {
@@ -55,13 +54,56 @@ int main()
   
   while (getline(in, line))
   {
-    //std::cout << "running fixed indentation" << std::endl;
     std::cout << line << std::endl;
   }
   in.close();
 
-  std::cout << "\n==========================================\n";
-  //std::cout << output;
+  std::cout << "\n=======================\n";
+
+  std::cout << "Returning tabs to badly indented code: \n" << std::endl;
+  in.open("bad-code.cpp");
+  if (in.fail())
+    {
+      std::cerr << "File cannot be opened";
+      exit(1);
+    }
+  out.open("correct-indentation.cpp");
+  std::string result;
+  int tab = 0;
+  while (getline(in, line))
+    {
+      if (countChar(line, '}') == -1)
+	{
+	  tab--;
+	}
+      
+      for (int i = 0; i<tab; i++)
+	{
+	  out << "\t";
+	}
+      
+      out << removeLeadingSpaces(line);
+      out << "\n";
+
+      if (countChar(line, '{') == 1)
+	{
+	  tab++;
+	}
+    }
+  in.close();
+  out.close();
+
+  in.open("correct-indentation.cpp");
+  if (in.fail())
+    {
+      std::cerr << "File cannot be opened";
+      exit(1);
+    }
+
+  while (getline(in, line))
+    {
+      std::cout << line << std::endl;
+    }
 
   return 0;
 }
