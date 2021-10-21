@@ -14,19 +14,22 @@ main file, runs and tests removingLeadingSpaces function
 
 int main()
 {
-  std::cout << "testing removeLeadingSpaces with a sentence" << std::endl;
+  std::cout << "testing removeLeadingSpaces with a sentence:\n" << std::endl;
   std::string x = "       int x = 1;  ";
   x = removeLeadingSpaces(x);
   std::cout << x  << std::endl;
 
-  std::cout << "\ntesting removeLeadingSpaces with bad-code file" << std::endl;
+  std::cout << "\n=======================\n";
+  
+  std::cout << "\ntesting removeLeadingSpaces with bad-code file\n" << std::endl;
   std::string line;
   std::string output = ""; //delete later
   std::ifstream in;
 
   in.open("bad-code.cpp");
 
-  if(in.fail()) {
+  if(in.fail())
+  {
     std::cerr << "File cannot be opened";
     exit(1);
   }
@@ -56,7 +59,8 @@ int main()
     std::cout << line << std::endl;
   }
   in.close();
-  
+
+  std::cout << "\n==========================================\n";
   //std::cout << output;
 
   return 0;
