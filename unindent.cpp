@@ -4,13 +4,13 @@ Course: CSCI-135
 Instructor: Tong Yi and Mike Zamansky
 Assignment: Lab 7 
 
-this is the unident function, it'll call the removeLeadingSpaces
-in a while loop until it finishes reading everything
+this is the removeLeadingSpaces function
+it will count the number of spaces before the actual code starts and remove those spaces
 
 */
 
 #include <iostream>
-
+#include <cctype>
 #include "unindent.h"
 
 //removing indentation

@@ -4,12 +4,13 @@ Course: CSCI-135
 Instructor: Tong Yi and Mike Zamansky
 Assignment: Lab 7
 
-main file, runs and tests removingLeadingSpaces function
+main file, runs indent and unindent function
 
 */
 
 #include <iostream>
 #include <fstream>
+#include <cctype>
 #include "unindent.h"
 #include "indent.h"
 
