@@ -13,17 +13,14 @@ or a 1 if its a {
 #include <cctype>
 #include "indent.h"
 
-int countChar(std::string line, char c)
-{
+int countChar(std::string line, char c) {
   int len = line.length();
   for (int i = 0; i < len; i++){
     char c = line[i];
-    if (c == '{')
-      {
+    if (c == '{') {
 	return 1;
       }
-    else if (c == '}')
-      {
+    else if (c == '}') {
 	return -1;
       }
   }

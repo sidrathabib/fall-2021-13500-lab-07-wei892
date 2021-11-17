@@ -30,16 +30,14 @@ int main()
 
   in.open("bad-code.cpp");
 
-  if(in.fail())
-  {
+  if(in.fail()) {
     std::cerr << "File cannot be opened";
     exit(1);
   }
 
   std::ofstream out;
   out.open("removed-indentation.cpp");
-  while (getline(in, line))
-    {
+  while (getline(in, line)) {
       out << removeLeadingSpaces(line);
       out << "\n";
     }
@@ -47,14 +45,12 @@ int main()
   out.close();
 
   in.open("removed-indentation.cpp");
-  if (in.fail())
-    {
+  if (in.fail()) {
       std::cerr << "File cannot be opened";
       exit(1);
     }
   
-  while (getline(in, line))
-  {
+  while (getline(in, line)) {
     std::cout << line << std::endl;
   }
   in.close();
@@ -63,18 +59,15 @@ int main()
 
   std::cout << "Returning tabs to badly indented code: \n" << std::endl;
   in.open("bad-code.cpp");
-  if (in.fail())
-    {
+  if (in.fail()) {
       std::cerr << "File cannot be opened";
       exit(1);
     }
   out.open("correct-indentation.cpp");
   std::string result;
   int tab = 0;
-  while (getline(in, line))
-    {
-      if (countChar(line, '}') == -1)
-	{
+  while (getline(in, line)) {
+      if (countChar(line, '}') == -1) {
 	  tab--;
 	}
       
